@@ -38,12 +38,12 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Relaxed margins for better page fill
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1.0in}
-\addtolength{\topmargin}{-0.5in}
-\addtolength{\textheight}{1.0in}
+% Tight margins for maximum content density
+\addtolength{\oddsidemargin}{-0.65in}
+\addtolength{\evensidemargin}{-0.65in}
+\addtolength{\textwidth}{1.3in}
+\addtolength{\topmargin}{-0.8in}
+\addtolength{\textheight}{1.5in}
 
 \urlstyle{same}
 
@@ -51,10 +51,10 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting - relaxed spacing
+% Sections formatting - tight spacing
 \titleformat{\section}{
-  \vspace{-2pt}\scshape\raggedright\large\bfseries
-}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+  \vspace{-5pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -72,7 +72,7 @@
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & \small #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-5pt}
+    \end{tabular*}\vspace{-6pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
@@ -136,6 +136,14 @@
   \resumeSubHeadingListStart
 
     \resumeSubheading
+      {LFX Mentee, CloudNativePG}{Sep. 2025 -- Dec. 2025}
+      {\href{https://github.com/cloudnative-pg/chaos-testing}{Cloud Native Computing Foundation (CNCF)}}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built a chaos-testing harness that deletes the PostgreSQL primary in a 3-instance CloudNativePG cluster under load and verifies recovery with Jepsen consistency checks and Prometheus probes, confirming sub-minute failover with no data loss.}
+        \resumeItem{Automated the full flow in GitHub Actions: provision a Kind cluster, install the CloudNativePG operator and LitmusChaos, inject primary pod deletion, run Jepsen, and export result artifacts.}
+      \resumeItemListEnd
+
+    \resumeSubheading
       {Software Engineer}{Mar. 2026 -- Present}
       {\href{https://remotestar.io/}{RemoteStar}}{Remote}
       \resumeItemListStart
@@ -147,32 +155,11 @@
       {Software Development Engineer Intern}{July 2025 -- Feb. 2026}
       {\href{https://seeqlo.com/}{Seeqlo}}{Remote}
       \resumeItemListStart
-        \resumeItem{Rewrote the backend in Go as a REST API for student-teacher workflows, and set up staging and production environments (Docker Compose on GCP Cloud Run, Firebase Hosting) that removed manual deployment.}
+        \resumeItem{Wrote the backend in Go as a REST API for student-teacher workflows, and set up staging and production environments (Docker Compose on GCP Cloud Run, Firebase Hosting) that removed manual deployment.}
         \resumeItem{Wrote Firebase Security Rules enforcing student, teacher, and admin RBAC across collections, and built the backend for an AI presentation generator on the Gemini API with real-time sync and auto-save.}
       \resumeItemListEnd
 
-    \resumeSubheading
-      {LFX Mentee, CloudNativePG}{Sep. 2025 -- Dec. 2025}
-      {\href{https://github.com/cloudnative-pg/chaos-testing}{Cloud Native Computing Foundation (CNCF)}}{Remote}
-      \resumeItemListStart
-        \resumeItem{Built a chaos-testing harness that deletes the PostgreSQL primary in a 3-instance CloudNativePG cluster under load and verifies recovery with Jepsen consistency checks and Prometheus probes, confirming sub-minute failover with no data loss.}
-        \resumeItem{Shipped upstream \href{https://github.com/litmuschaos/chaos-operator/pull/510}{chaos-operator PR \#510}, adding a \texttt{labelMatchMode} field so LitmusChaos can target operator-managed CNPG primary pods by label intersection instead of standard workload kinds.}
-      \resumeItemListEnd
-
   \resumeSubHeadingListEnd
-
-%-----------PROJECTS-----------
-\section{Projects}
-    \resumeSubHeadingListStart
-
-      \resumeProjectHeading
-          {\textbf{\href{https://github.com/XploY04/reelpin-api}{ReelPin}} $|$ \emph{Python, FastAPI, Gemini, Pinecone, Supabase, Redis}}{\href{https://github.com/XploY04/reelpin-api}{GitHub}}
-          \resumeItemListStart
-            \resumeItem{Built the FastAPI backend and a Dramatiq/Redis job queue that ingests Instagram, TikTok, and YouTube reels with yt-dlp, transcribes and categorizes them into a 46-category matrix with Gemini, and geocodes mentioned places via Google Maps into Supabase Postgres.}
-            \resumeItem{Added natural-language search over saved reels by embedding transcripts into Pinecone for retrieval, and hardened the service with per-platform worker concurrency limits, retries with dead-lettering, rate limiting, and latency and error-rate alerting.}
-          \resumeItemListEnd
-
-    \resumeSubHeadingListEnd
 
 %-----------OPEN SOURCE CONTRIBUTIONS-----------
 \section{Open Source Contributions}
@@ -186,7 +173,27 @@
         \resumeItem{Authored and implemented the TrainJob lifecycle proposal adding \texttt{activeDeadlineSeconds} and \texttt{TTLSecondsAfterFinished} to the CRD (\href{https://github.com/kubeflow/trainer/pull/3068}{KEP \#3068}, \href{https://github.com/kubeflow/trainer/pull/3258}{impl \#3258}), and fixed all failing Kubeflow SDK E2E tests by handling Kubernetes 404/403 errors (\href{https://github.com/kubeflow/sdk/pull/307}{\#307}).}
       \resumeItemListEnd
 
+    \resumeSubheading
+      {LitmusChaos (CNCF Sandbox) -- Contributor}{Go, Kubernetes CRDs}
+      {Precise pod targeting for operator-managed workloads}{}
+      \resumeItemListStart
+        \resumeItem{Shipped merged upstream \href{https://github.com/litmuschaos/chaos-operator/pull/510}{chaos-operator PR \#510} adding a \texttt{labelMatchMode} field, and authored \href{https://github.com/litmuschaos/litmus-go/pull/777}{litmus-go PR \#777}, so LitmusChaos can target operator-managed pods such as a CloudNativePG primary by label intersection instead of standard workload kinds.}
+      \resumeItemListEnd
+
   \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{\href{https://www.reelpin.in/}{ReelPin}} $|$ \emph{Python, FastAPI, Gemini, Pinecone, Supabase, Redis}}{\href{https://github.com/XploY04/reelpin-api}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built the FastAPI backend and a Dramatiq/Redis job queue that ingests Instagram Reels with yt-dlp, transcribes and categorizes them into a 46-category matrix with Gemini, and geocodes mentioned places via Google Maps into Supabase Postgres.}
+            \resumeItem{Added natural-language search over saved reels by embedding transcripts into Pinecone for retrieval, and hardened the service with worker concurrency limits, retries with dead-lettering, rate limiting, and latency and error-rate alerting.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
 
 %-----------ACHIEVEMENTS-----------
 \section{Achievements}
