@@ -42,8 +42,8 @@
 \addtolength{\oddsidemargin}{-0.65in}
 \addtolength{\evensidemargin}{-0.65in}
 \addtolength{\textwidth}{1.3in}
-\addtolength{\topmargin}{-0.8in}
-\addtolength{\textheight}{1.5in}
+\addtolength{\topmargin}{-0.9in}
+\addtolength{\textheight}{1.7in}
 
 \urlstyle{same}
 
@@ -109,7 +109,8 @@
     {\Huge \scshape Yash Agarwal} \\ \vspace{2pt}
     \small \raisebox{-0.1\height}\faPhone\ +91 8140724216 $|$ \href{mailto:2004agarwalyash@gmail.com}{\raisebox{-0.2\height}\faEnvelope\ \underline{2004agarwalyash@gmail.com}} $|$
     \href{https://linkedin.com/in/XploY04}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/XploY04}} $|$
-    \href{https://github.com/XploY04}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/XploY04}}
+    \href{https://github.com/XploY04}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/XploY04}} $|$
+    \href{https://linktr.ee/XploY04}{\raisebox{-0.2\height}\faGlobe\ \underline{linktr.ee/XploY04}}
 \end{center}
 
 
@@ -136,14 +137,6 @@
   \resumeSubHeadingListStart
 
     \resumeSubheading
-      {LFX Mentee, CloudNativePG}{Sep. 2025 -- Dec. 2025}
-      {\href{https://github.com/cloudnative-pg/chaos-testing}{Cloud Native Computing Foundation (CNCF)}}{Remote}
-      \resumeItemListStart
-        \resumeItem{Built a chaos-testing harness that deletes the PostgreSQL primary in a 3-instance CloudNativePG cluster under load and verifies recovery with Jepsen consistency checks and Prometheus probes, confirming sub-minute failover with no data loss.}
-        \resumeItem{Automated the full flow in GitHub Actions: provision a Kind cluster, install the CloudNativePG operator and LitmusChaos, inject primary pod deletion, run Jepsen, and export result artifacts.}
-      \resumeItemListEnd
-
-    \resumeSubheading
       {Software Engineer}{Mar. 2026 -- Present}
       {\href{https://remotestar.io/}{RemoteStar}}{Remote}
       \resumeItemListStart
@@ -152,11 +145,27 @@
       \resumeItemListEnd
 
     \resumeSubheading
+      {Software Engineer}{Apr. 2026 -- Present}
+      {\href{https://www.finalroundai.com/}{Final Round AI}}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built the Report V2 interview-report backend (Python, Node) with per-question and aggregate scoring stages and an evidence gate that blocks any report from completing without backing evidence, plus GCS input recovery and Datadog lifecycle metrics.}
+        \resumeItem{Fixed blank report emails affecting ~40\% of recent reports by publishing the RabbitMQ end event on session timeout, and replaced a blocking \texttt{requests.delete} in an async payment path with \texttt{httpx.AsyncClient}.}
+      \resumeItemListEnd
+
+    \resumeSubheading
       {Software Development Engineer Intern}{July 2025 -- Feb. 2026}
       {\href{https://seeqlo.com/}{Seeqlo}}{Remote}
       \resumeItemListStart
         \resumeItem{Wrote the backend in Go as a REST API for student-teacher workflows, and set up staging and production environments (Docker Compose on GCP Cloud Run, Firebase Hosting) that removed manual deployment.}
-        \resumeItem{Wrote Firebase Security Rules enforcing student, teacher, and admin RBAC across collections, and built the backend for an AI presentation generator on the Gemini API with real-time sync and auto-save.}
+        \resumeItem{Enforced student, teacher, and admin RBAC with Firebase Security Rules across collections, and built the backend for an AI presentation generator on the Gemini API with real-time sync and auto-save.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {LFX Mentee, CloudNativePG}{Sep. 2025 -- Dec. 2025}
+      {\href{https://github.com/cloudnative-pg/chaos-testing}{Cloud Native Computing Foundation (CNCF)}}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built a chaos-testing harness that deletes the PostgreSQL primary in a 3-instance CloudNativePG cluster under load and verifies recovery with Jepsen consistency checks and Prometheus probes, confirming sub-minute failover with no data loss.}
+        \resumeItem{Automated the full flow in GitHub Actions: provision a Kind cluster, install the CloudNativePG operator and LitmusChaos, inject primary pod deletion, run Jepsen, and export result artifacts.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -177,7 +186,7 @@
       {LitmusChaos (CNCF Sandbox) -- Contributor}{Go, Kubernetes CRDs}
       {Precise pod targeting for operator-managed workloads}{}
       \resumeItemListStart
-        \resumeItem{Shipped merged upstream \href{https://github.com/litmuschaos/chaos-operator/pull/510}{chaos-operator PR \#510} adding a \texttt{labelMatchMode} field, and authored \href{https://github.com/litmuschaos/litmus-go/pull/777}{litmus-go PR \#777}, so LitmusChaos can target operator-managed pods such as a CloudNativePG primary by label intersection instead of standard workload kinds.}
+        \resumeItem{Shipped upstream \href{https://github.com/litmuschaos/chaos-operator/pull/510}{chaos-operator PR \#510} adding a \texttt{labelMatchMode} field and authored \href{https://github.com/litmuschaos/litmus-go/pull/777}{litmus-go PR \#777}, letting LitmusChaos target operator-managed pods such as a CloudNativePG primary by label intersection.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -189,7 +198,7 @@
       \resumeProjectHeading
           {\textbf{\href{https://www.reelpin.in/}{ReelPin}} $|$ \emph{Python, FastAPI, Gemini, Pinecone, Supabase, Redis}}{\href{https://github.com/XploY04/reelpin-api}{GitHub}}
           \resumeItemListStart
-            \resumeItem{Built the FastAPI backend and a Dramatiq/Redis job queue that ingests Instagram Reels with yt-dlp, transcribes and categorizes them into a 46-category matrix with Gemini, and geocodes mentioned places via Google Maps into Supabase Postgres.}
+            \resumeItem{Built the FastAPI backend and Dramatiq/Redis job queue that ingests Instagram Reels with yt-dlp, transcribes and categorizes them into a 46-category matrix with Gemini, and geocodes places via Google Maps into Supabase Postgres; 850+ reels, 50 users.}
             \resumeItem{Added natural-language search over saved reels by embedding transcripts into Pinecone for retrieval, and hardened the service with worker concurrency limits, retries with dead-lettering, rate limiting, and latency and error-rate alerting.}
           \resumeItemListEnd
 
