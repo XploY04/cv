@@ -168,17 +168,20 @@
         \resumeItem{Automated the full flow in GitHub Actions: provision a Kind cluster, install the CloudNativePG operator and LitmusChaos, inject primary pod deletion, run Jepsen, and export result artifacts.}
       \resumeItemListEnd
 
-    \resumeSubheading
-      {Full-Stack Developer Intern}{Feb. 2025}
-      {AMX Innovations}{Remote}
-      \resumeItemListStart
-        \resumeItem{Built a client-side ground control point detection model with OpenCV, reaching 95\% accuracy on drone imagery.}
-        \resumeItem{Engineered a batch upload pipeline that moved 50,000+ drone images to AWS S3 with fault-tolerant error recovery, and built REST APIs for real-time progress tracking of the detection workloads.}
-      \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
-  \resumeSubHeadingListEnd
+  %-----------PROJECTS-----------
+  \section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+        {\textbf{\href{https://github.com/XploY04/throtl}{Throtl}} $|$ \emph{Python, Scapy, Django Channels, Redis pub/sub, React, \texttt{tc}/\texttt{iptables}}}{}
+        \resumeItemListStart
+          \resumeItem{Built a distributed system that turns a Linux laptop into a Wi-Fi hotspot with real-time per-device bandwidth monitoring and throttling, split into a Scapy network engine, Django backend, and React dashboard communicating over Redis pub/sub.}
+          \resumeItem{Summed per-client traffic over a 1-second sliding window, streamed live stats over WebSockets via Django Channels, and applied throttling through \texttt{tc}/\texttt{iptables} with one-click controls and threshold-based auto-throttling.}
+        \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
-%-----------OPEN SOURCE CONTRIBUTIONS-----------
+  %-----------OPEN SOURCE CONTRIBUTIONS-----------
 \section{Open Source Contributions}
   \resumeSubHeadingListStart
 
