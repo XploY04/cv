@@ -18,9 +18,9 @@
 | **Linktree** | [linktr.ee/XploY04](https://linktr.ee/XploY04) |
 | **Location** | Bengaluru, Karnataka, India |
 
-**Tagline:** Software Engineer @ RemoteStar & Final Round AI | LFX'25 @ CloudNativePG | Kubeflow Contributor | Reliance Foundation Scholar
+**Tagline:** Software Engineer @ HellYeah AI | LFX'25 @ CloudNativePG | Kubeflow Contributor | Reliance Foundation Scholar
 
-**Summary:** I love to explore tech and solve engineering problems. Currently working on resume, jobs, interview, billing, and AI platform systems at RemoteStar and Final Round AI, with a strong backend and infrastructure focus plus CNCF open-source contributions across CloudNativePG, Kubeflow, and LitmusChaos.
+**Summary:** I love to explore tech and solve engineering problems. Currently working on interview, billing, reporting, and ad-ops platform systems at HellYeah AI, after resume and jobs platform work at RemoteStar, with a strong backend and infrastructure focus plus CNCF open-source contributions across CloudNativePG, Kubeflow, and LitmusChaos.
 
 ---
 
@@ -93,14 +93,20 @@
 - Stripe
 - SQS
 - Gotenberg
+- Meta Marketing API
+- Google Ads API
+- Express
+- Prisma
 
 ---
 
 ## 💼 Work Experience
 
+> **Resume date convention:** RemoteStar and HellYeah AI are both ongoing, but resumes show closed ranges: RemoteStar as March 2026 – May 2026 and HellYeah AI as April 2026 – September 2026. Keep every contribution under the company it belongs to; do not try to fit individual items inside the stated date range, and do not add per-item dates to a resume. Apply this to every resume generated from this profile.
+
 ### 1. RemoteStar - Software Engineer
-- **Duration:** March 2026 – Present
-- **Type:** Current Role – Remote
+- **Duration:** March 2026 – May 2026 (3 months)
+- **Type:** Remote
 - **Stack:** Go, TypeScript, MongoDB, Redis, OpenAI Structured Outputs, Firebase Auth, SQS, Gotenberg, GitOps
 
 **Key Contributions:**
@@ -125,9 +131,9 @@
 
 ---
 
-### 2. Final Round AI - Software Engineer
-- **Duration:** April 2026 – Present
-- **Type:** Current Role – Remote
+### 2. HellYeah AI - Software Engineer
+- **Duration:** April 2026 – September 2026
+- **Type:** Remote
 - **Stack:** Python, async HTTP, Stripe, Clerk, React/TypeScript, resume parsing, Copilot context
 
 **Key Contributions:**
@@ -140,12 +146,14 @@
 - Fixed blank report emails (~40% of recently emailed reports) by tracing in prod that abnormally-ended/2-hour-timeout sessions finalized and emailed without publishing the RabbitMQ `end` event, so the website's worker never built the viewable report; made `_session_timeout_worker` publish the `end` event before scheduling report generation.
 - Persisted full report input to GCS (`report-inputs/{userId}/{sessionId}/requests.v1.json`) so the worker can rebuild long-session inputs after Redis expiry instead of relying on the truncatable (1 MiB) Firestore session document, with a non-fatal fallback to the prior Firestore path.
 - Rejected scanned/image-only PDFs before upload, fixed report-page routing and a null-deref crash, fixed the report email detail link, and skipped an archived goal in the last-used config so a deleted role isn't replayed on Launch Copilot.
+- Built the campaign-launch write contract for the HellYeah B2B ad-ops CLI (`hy-b2b-data`): an in-process launcher for Meta and Google that creates every object (campaign, ad set/group, ad) PAUSED by default, gates real creation behind an explicit execute flag with a separate set-status go-live step, runs provider preflight (Meta Page/pixel/app plus page-to-account and app-to-account association; Google `validateOnly`), enforces a mandatory client idempotency key, returns a structured result (failed step, provider code/subcode, created resource IDs, `safeToRetry`, rollback status) with a full-tree post-write read-back, rolls back created objects on a partial failure, and requires operator/reason/approval metadata plus go-live and large-budget acknowledgements. Delivered the ad-ops team's full P0 write contract and verified each item live in production at zero spend.
 
 **Impact Themes:**
 - Payment reliability and cleaner production observability
 - Structured, evidence-backed interview reports (Report V2) and report-delivery reliability
 - Resume parsing and Copilot context correctness
 - Frontend/backend alignment around upload status and selected resume/material IDs
+- Safe, idempotent, auditable ad-platform write automation (Meta + Google) for the HellYeah B2B ad-ops CLI
 
 ---
 
@@ -266,10 +274,9 @@
 
 ## 📈 Recent GitHub Activity (Last 6 Months)
 
-### Final Round AI
-- **Period covered:** November 29, 2025 – June 27, 2026
-- **Repos:** [`finalroundai/interviewai`](https://github.com/finalroundai/interviewai), [`finalroundai/frai-website`](https://github.com/finalroundai/frai-website), [`finalroundai/frai_js_server`](https://github.com/finalroundai/frai_js_server), [`finalroundai/finalround-desktop`](https://github.com/finalroundai/finalround-desktop)
-- **Stack:** Python, Node.js, FastAPI-style services, async HTTP, Stripe, Clerk, React/TypeScript, RabbitMQ, GCS, Datadog, resume parsing, Copilot context
+### HellYeah AI
+- **Repos:** [`finalroundai/interviewai`](https://github.com/finalroundai/interviewai), [`finalroundai/frai-website`](https://github.com/finalroundai/frai-website), [`finalroundai/frai_js_server`](https://github.com/finalroundai/frai_js_server), [`finalroundai/finalround-desktop`](https://github.com/finalroundai/finalround-desktop), [`finalroundai/hellyeah-b2b`](https://github.com/finalroundai/hellyeah-b2b)
+- **Stack:** Python, Node.js, FastAPI-style services, Express, Prisma, async HTTP, Stripe, Clerk, React/TypeScript, RabbitMQ, GCS, Datadog, Meta Marketing API, Google Ads API, resume parsing, Copilot context
 
 **Significant Work:**
 - Shipped [interviewai#2401](https://github.com/finalroundai/interviewai/pull/2401), replacing a blocking `requests.delete()` call inside an async payment-account delete path with `httpx.AsyncClient`, adding timeout-specific handling, and keeping unit coverage green.
@@ -285,11 +292,19 @@
 - Shipped [frai_js_server#743](https://github.com/finalroundai/frai_js_server/pull/743) (skip archived goal in last-used config), [frai_js_server#740](https://github.com/finalroundai/frai_js_server/pull/740) (allow clearing `company_detail`/`job_description`), [interviewai#2440](https://github.com/finalroundai/interviewai/pull/2440) (fix report email detail link), and [frai-website#1046](https://github.com/finalroundai/frai-website/pull/1046) (remove duplicate upload error toast).
 - Opened [finalround-desktop#111](https://github.com/finalroundai/finalround-desktop/pull/111), rejecting scanned/image-only PDFs before upload.
 
+**July work — HellYeah B2B ad-ops write contract (`hy-b2b-data` CLI + `apps/api`):**
+- Shipped [hellyeah-b2b#372](https://github.com/finalroundai/hellyeah-b2b/pull/372): campaign-launch write-path hardening (Meta website destination, explicit execute gate, rich result contract, mandatory idempotency key, Meta provider preflight, read-only input-discovery endpoints, minimal Google Search campaign, approval metadata and safety acks, audit logging), plus a Google responsive-search-ad minimum-assets guard (3 headlines / 2 descriptions) and a Meta Graph API version bump, both found via API-documentation research.
+- Shipped [hellyeah-b2b#386](https://github.com/finalroundai/hellyeah-b2b/pull/386): fixed a Meta dry-run to compile through the executor and return the compiled steps instead of an empty failed result (found during production testing).
+- Shipped [hellyeah-b2b#388](https://github.com/finalroundai/hellyeah-b2b/pull/388): full-tree post-write read-back (campaign + ad set/group + ad, with native/effective/serving status, budget, currency), Meta preflight completeness (page-to-account association via `promote_pages`, Instagram actor, app/store), truthful Google serving status (a PAUSED campaign no longer reads SERVING), and required operator/reason/approval-reference before any mutation.
+- Shipped [hellyeah-b2b#390](https://github.com/finalroundai/hellyeah-b2b/pull/390): a separate set-status go-live operation, best-effort rollback of created objects on a partial failure, and a `compileOnly` label for dry-runs.
+- Delivered the ad-ops team's full P0 write contract and verified each item live in production at zero spend, including a complete paused Meta campaign tree and a paused Google Search campaign with clean read-back.
+
 **Impact Themes:**
 - Payment reliability and cleaner production observability
 - Structured, evidence-backed interview reports (Report V2) and report-delivery reliability
 - Resume parsing and Copilot context correctness
 - Frontend/backend alignment around upload status and selected resume/material IDs
+- Safe, idempotent, auditable ad-platform write automation (Meta + Google) for the HellYeah B2B ad-ops CLI
 
 ### RemoteStar Candidate Platform
 - **Period covered:** November 29, 2025 – June 27, 2026
@@ -440,12 +455,13 @@ Use this section to quickly map your experience to common JD themes:
 |---|---|
 | **Backend / Go** | RemoteStar candidate backend, Seeqlo (full Go rewrite), LitmusChaos (Go contributions), CloudNativePG (Go framework) |
 | **Kubernetes / Cloud Native** | LFX CloudNativePG, LitmusChaos CRDs, Docker/K8s across roles |
-| **Python / FastAPI** | Final Round AI backend reliability work, jobs.ai project (async pipeline, PostgreSQL FTS) |
-| **Full-Stack / TypeScript** | RemoteStar candidate platform, Final Round AI Copilot setup flow, SIH Portal (Next.js 14, MongoDB, Firebase Auth) |
+| **Python / FastAPI** | HellYeah AI backend reliability work, jobs.ai project (async pipeline, PostgreSQL FTS) |
+| **Full-Stack / TypeScript** | RemoteStar candidate platform, HellYeah AI Copilot setup flow, SIH Portal (Next.js 14, MongoDB, Firebase Auth) |
 | **DevOps / CI-CD** | Seeqlo (Docker Compose + GCP Cloud Run + CI/CD), monitoring stacks |
 | **AI / ML Integration** | Seeqlo (Gemini API presentations), AMX (OpenCV 95% accuracy), jobs.ai (Gemini batch), RemoteStar resume parsing/tailoring with OpenAI Structured Outputs |
 | **Databases** | PostgreSQL (FTS, tsvector, GIN), MongoDB (aggregation), Redis |
-| **Payments / Billing** | Final Round AI async payment-account deletion, Stripe idempotency race handling, RemoteStar display-currency billing hints |
+| **Payments / Billing** | HellYeah AI async payment-account deletion, Stripe idempotency race handling, RemoteStar display-currency billing hints |
+| **Ad Platform Integration / Write APIs** | HellYeah AI B2B campaign-launch write contract (Meta Marketing API + Google Ads API: preflight, idempotency, read-back, rollback, set-status) |
 | **Resume / Jobs Platforms** | RemoteStar saved jobs, on-demand job analysis, resume parsing/tailoring/rendering, admin job CRUD |
 | **Open Source** | CNCF LitmusChaos contributor, Kubeflow contributor (Trainer/SDK/Website/Pipelines/Notebooks), Linux Foundation mentee |
 | **ML / Distributed Training** | Kubeflow Trainer (Megatron-Core Tensor Parallelism notebook + docs), TrainJob CRD lifecycle proposal |
@@ -464,14 +480,15 @@ Use this section to quickly map your experience to common JD themes:
 | 2026-02-24 | Added Kubeflow SDK PR #307 context, missing links, and Clone Wars achievement |
 | 2026-02-24 | Added Ascend (Lakshya) project context |
 | 2026-04-29 | Expanded Kubeflow open-source section: Trainer Megatron-Core TP work (#3201, #3434), TrainJob CRD lifecycle proposal (#3068), Website user guides (#4348, #4360), SDK ActiveDeadlineSeconds follow-up (#415, #403), Pipelines Helm charts proposal (#12728); added ML/distributed-training cheat-sheet row and Megatron/PyTorch skills |
-| 2026-05-29 | Added significant GitHub activity from the last six months: Final Round AI payment/resume/Copilot work, RemoteStar candidate platform backend/frontend/GitOps work, Kubeflow follow-ups, ChatOps tooling, and related skill/cheat-sheet updates |
-| 2026-05-29 | Added RemoteStar (March 2026 – Present) and Final Round AI (April 2026 – Present) as current work experience entries |
+| 2026-05-29 | Added significant GitHub activity from the last six months: HellYeah AI payment/resume/Copilot work, RemoteStar candidate platform backend/frontend/GitOps work, Kubeflow follow-ups, ChatOps tooling, and related skill/cheat-sheet updates |
+| 2026-05-29 | Added RemoteStar (March 2026 – Present) and HellYeah AI (April 2026 – Present) as current work experience entries |
 | 2026-06-26 | Added "Other Public Projects" from public GitHub (wispr, linkedin-ai-reply, EcoMine, pomodoro-discord-bot, AI-Feedback-form) |
 | 2026-06-27 | Added June work from FRAI + RemoteStar orgs: FRAI Report V2 backend (frai_js_server#744), report-delivery reliability (interviewai#2452, #2463), report routing/email fixes, scanned-PDF rejection; RemoteStar email-verification-gated signup, achievements bullet editor, saved-jobs transient-error fix, ingress timeout; added Datadog/RabbitMQ/GCS skills |
 | 2026-06-27 | Added newly surfaced Kubeflow contributions: merged TrainJob `activeDeadlineSeconds` implementation (trainer#3258), Pipelines Helm-charts KEP (pipelines#12842), and Notebooks dev-guide expansion (notebooks#835); added Notebooks to contributor scope |
 | 2026-06-27 | Added missed CNCF upstream items found via full GitHub sweep: merged CloudNativePG chaos-testing#3, and LitmusChaos litmus-go#778 (PreTargetSelection probe-mode feature request) |
 | 2026-06-27 | Added Linux Foundation LiFT Scholarship (2026) to Achievements and a Talks entry for the first Kubeflow Commons Hub Pune meetup talk (Megatron-LM tensor parallelism on Kubeflow Trainer) |
 | 2026-06-27 | Added LF Mentorship Showcase talk + LFX mentor names and poster/project links to the CloudNativePG entry |
+| 2026-07-20 | Added HellYeah AI B2B ad-ops write contract (`hy-b2b-data` CLI): campaign-launch hardening, full-tree read-back, Meta/Google preflight, set-status go-live, rollback (hellyeah-b2b #372/#386/#388/#390); added Meta Marketing API / Google Ads API / Express / Prisma skills and an ad-platform cheat-sheet row |
 
 <!-- 
   HOW TO USE:
